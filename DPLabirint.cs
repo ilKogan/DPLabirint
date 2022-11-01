@@ -14,8 +14,11 @@ namespace DPLabirint
     {
         static void Main(string[] args)
         {
+            EnchantedMazeFactory enchantedMazeFactory = new EnchantedMazeFactory();
+            BombedMazeFactory bombMazeFactory = new BombedMazeFactory();
             MazeGame game = new MazeGame();
-            Maze currentMaze = game.CreateMaze();
+            Maze currentMaze = game.CreateMaze(enchantedMazeFactory);
+            currentMaze = game.CreateMaze(bombMazeFactory);
         }
     }
 
@@ -39,7 +42,6 @@ namespace DPLabirint
             RoomNumber = roomNumber;
             _Sides = new Dictionary<Direction, MapSide>(4);
         }
-
 
         public override void Enter()
         {
@@ -112,27 +114,105 @@ namespace DPLabirint
 
     class MazeGame
     {
-        public Maze CreateMaze()
+        MazeFactory _Factory;
+
+        public Maze CreateMaze(MazeFactory factory)
         {
-            Maze maze = new Maze();
-            Room r1 = new Room(1);
-            Room r2 = new Room(2);
-            Door door = new Door(r1,r2);
+            _Factory = factory;
+            Maze maze = factory.MakeMaze();
+            Room r1 = factory.MakeRoom(1);
+            Room r2 = factory.MakeRoom(2);
+            Door door = factory.MakeDoor(r1,r2);
 
             maze.AddRoom(r1);
             maze.AddRoom(r2);
 
-            r1.SetSide(Direction.North, new Wall());
+            r1.SetSide(Direction.North, factory.MakeWall());
             r1.SetSide(Direction.East, door);
-            r1.SetSide(Direction.South, new Wall());
-            r1.SetSide(Direction.West, new Wall());
+            r1.SetSide(Direction.South, factory.MakeWall());
+            r1.SetSide(Direction.West, factory.MakeWall());
 
-            r2.SetSide(Direction.North, new Wall());
-            r2.SetSide(Direction.East, new Wall());
-            r2.SetSide(Direction.South, new Wall());
+            r2.SetSide(Direction.North, factory.MakeWall());
+            r2.SetSide(Direction.East, factory.MakeWall());
+            r2.SetSide(Direction.South, factory.MakeWall());
             r2.SetSide(Direction.West, door);
 
             return maze;
+        }
+    }
+
+    class MazeFactory
+    {
+        public virtual Maze MakeMaze()
+        {
+            return new Maze();
+        }
+        public virtual Room MakeRoom(int number)
+        {
+            return new Room(number);
+        }
+        public virtual Wall MakeWall()
+        {
+            return new Wall();
+        }
+        public virtual Door MakeDoor(Room room1,Room room2)
+        {
+            return new Door(room1,room2);
+        }
+    }
+//--------------------------------------
+
+    class EnchantedMazeFactory : MazeFactory
+    {
+        public override Room MakeRoom(int number)
+        {
+            return new EnchantedRoom(number,SpawnEnemy());
+        }
+
+        protected Enemy SpawnEnemy()
+        {
+            return null;
+        }
+    }
+
+    class Enemy
+    {
+    }
+
+    class EnchantedRoom : Room
+    {
+        private Enemy _Enemy;
+
+        public EnchantedRoom(int number):base(number)
+        {
+        }
+
+        public EnchantedRoom(int number, Enemy enemy):base(number)
+        {
+            _Enemy = enemy;
+        }
+    }
+//--------------------------------------
+    class BombedWall : Wall {}
+
+    class RoomWhithBomb : Room
+    {
+        public RoomWhithBomb(int roomNumber) : base(roomNumber)
+        {
+
+        }
+    }
+
+    class BombedMazeFactory : MazeFactory
+    {
+        public override Wall MakeWall()
+        {
+            return new BombedWall();
+        }
+
+        public override Room MakeRoom(int number)
+        {
+            return new RoomWhithBomb(number);
         }
     }
 }
