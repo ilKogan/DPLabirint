@@ -1,0 +1,15 @@
+C:\GitProject\DPLabirint\bin\Debug\net6.0\DPLabirint.exe
+C:\GitProject\DPLabirint\bin\Debug\net6.0\DPLabirint.deps.json
+C:\GitProject\DPLabirint\bin\Debug\net6.0\DPLabirint.runtimeconfig.json
+C:\GitProject\DPLabirint\bin\Debug\net6.0\DPLabirint.dll
+C:\GitProject\DPLabirint\bin\Debug\net6.0\DPLabirint.pdb
+C:\GitProject\DPLabirint\obj\Debug\net6.0\DPLabirint.csproj.AssemblyReference.cache
+C:\GitProject\DPLabirint\obj\Debug\net6.0\DPLabirint.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitProject\DPLabirint\obj\Debug\net6.0\DPLabirint.AssemblyInfoInputs.cache
+C:\GitProject\DPLabirint\obj\Debug\net6.0\DPLabirint.AssemblyInfo.cs
+C:\GitProject\DPLabirint\obj\Debug\net6.0\DPLabirint.csproj.CoreCompileInputs.cache
+C:\GitProject\DPLabirint\obj\Debug\net6.0\DPLabirint.dll
+C:\GitProject\DPLabirint\obj\Debug\net6.0\refint\DPLabirint.dll
+C:\GitProject\DPLabirint\obj\Debug\net6.0\DPLabirint.pdb
+C:\GitProject\DPLabirint\obj\Debug\net6.0\DPLabirint.genruntimeconfig.cache
+C:\GitProject\DPLabirint\obj\Debug\net6.0\ref\DPLabirint.dll
