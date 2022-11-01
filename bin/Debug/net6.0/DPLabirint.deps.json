@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "DPLabirint/1.0.0": {
+        "runtime": {
+          "DPLabirint.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DPLabirint/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
